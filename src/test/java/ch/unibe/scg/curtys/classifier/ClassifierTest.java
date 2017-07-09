@@ -1,6 +1,5 @@
 package ch.unibe.scg.curtys.classifier;
 
-import ch.unibe.scg.curtys.App;
 import ch.unibe.scg.curtys.vectorization.io.JsonIO;
 import ch.unibe.scg.curtys.vectorization.issue.Issue;
 import org.junit.jupiter.api.BeforeAll;
@@ -20,7 +19,7 @@ class ClassifierTest {
 
 	@BeforeAll
 	static void setUpClass() throws Exception {
-		Path p = Paths.get(App.class.getResource("/json/HTTPCLIENT-3.json").getPath());
+		Path p = Paths.get(Classifier.class.getResource("/json/HTTPCLIENT-3.json").getPath());
 		issue = JsonIO.mapIssue(p);
 	}
 
