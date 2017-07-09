@@ -1,0 +1,181 @@
+vectorMapping:
+  0: # error
+    - node-7
+    - node-2
+  2: # code snippets
+    - node-15
+  12: # system specifications
+    - node-10
+    - node-12
+  13: # priority
+    - node-9
+  14: # reproduction
+    - node-1
+  15: # screenshot
+    - node-5
+  16: # expected behaviour
+    - node-16
+  17: # observed behaviour
+    - node-4
+  18: # test cases
+    - node-3
+  19: # version
+    - node-6
+  20: # component
+    - node-11
+  21: # product
+    - node-13
+
+nodes:
+  - id: node-1
+    name: Steps to reproduce
+    nodeClass: ch.unibe.bugreportquality.network.BinaryNode
+    probabilities:
+     - 0.83
+    connections:
+     - quality
+
+  - id: node-2
+    name: stack traces
+    nodeClass: ch.unibe.bugreportquality.network.BinaryNode
+    probabilities:
+     - 0.57
+    connections:
+     - quality
+
+  - id: node-3
+    name: test cases
+    nodeClass: ch.unibe.bugreportquality.network.BinaryNode
+    probabilities:
+     - 0.51
+    connections:
+     - quality
+
+  - id: node-4
+    name: observed behavior
+    nodeClass: ch.unibe.bugreportquality.network.BinaryNode
+    probabilities:
+     - 0.33
+    connections:
+     - quality
+
+  - id: node-5
+    name: screenshots
+    nodeClass: ch.unibe.bugreportquality.network.BinaryNode
+    probabilities:
+     - 0.26
+    connections:
+     - quality
+
+  - id: node-6
+    name: version
+    nodeClass: ch.unibe.bugreportquality.network.BinaryNode
+    probabilities:
+     - 0.12
+    connections:
+     - quality
+
+  - id: node-7
+    name: error reports
+    nodeClass: ch.unibe.bugreportquality.network.BinaryNode
+    probabilities:
+     - 0.83
+    connections:
+     - quality
+
+  - id: node-8
+    name: build information
+    nodeClass: ch.unibe.bugreportquality.network.BinaryNode
+    probabilities:
+     - 0.57
+    connections:
+     - quality
+
+  - id: node-9
+    name: severity
+    nodeClass: ch.unibe.bugreportquality.network.BinaryNode
+    probabilities:
+     - 0.51
+    connections:
+     - quality
+
+  - id: node-10
+    name: hardware
+    nodeClass: ch.unibe.bugreportquality.network.BinaryNode
+    probabilities:
+     - 0.0
+    connections:
+     - quality
+
+  - id: node-11
+    name: component
+    nodeClass: ch.unibe.bugreportquality.network.BinaryNode
+    probabilities:
+     - 0.03
+    connections:
+     - quality
+
+  - id: node-12
+    name: operating system
+    nodeClass: ch.unibe.bugreportquality.network.BinaryNode
+    probabilities:
+     - 0.04
+    connections:
+     - quality
+
+  - id: node-13
+    name: product
+    nodeClass: ch.unibe.bugreportquality.network.BinaryNode
+    probabilities:
+     - 0.05
+    connections:
+     - quality
+
+  - id: node-14
+    name: summary
+    nodeClass: ch.unibe.bugreportquality.network.BinaryNode
+    probabilities:
+     - 0.13
+    connections:
+     - quality
+
+  - id: node-15
+    name: code examples
+    nodeClass: ch.unibe.bugreportquality.network.BinaryNode
+    probabilities:
+     - 0.14
+    connections:
+     - quality
+
+  - id: node-16
+    name: expected behavior
+    nodeClass: ch.unibe.bugreportquality.network.BinaryNode
+    probabilities:
+     - 0.22
+    connections:
+     - quality
+
+  - id: quality
+    name: bug report quality
+    nodeClass: ch.unibe.bugreportquality.network.EffectNode
+
+scores:
+  - id: VERY_BAD
+    score: 1
+    threshold: 0.0
+
+  - id: BAD
+    score: 2
+    threshold: 0.19
+
+  - id: AVERAGE
+    score: 3
+    threshold: 0.603
+
+  - id: GOOD
+    score: 4
+    threshold: 0.933
+
+  - id: VERY_GOOD
+    score: 5
+    threshold: 0.9878
