@@ -102,12 +102,13 @@
 				<artifactId>site-maven-plugin</artifactId>
 				<version>0.12</version>
 				<configuration>
+					<server>github</server>
 					<message>Maven artifacts for ${project.version}</message>  <!-- git commit message -->
 					<noJekyll>true</noJekyll>                                  <!-- disable webpage processing -->
 					<outputDirectory>${project.build.directory}/mvn-repo</outputDirectory> <!-- matches distribution management repository url above -->
 					<branch>refs/heads/mvn-repo</branch>                       <!-- remote branch name -->
 					<includes><include>**/*</include></includes>
-					<repositoryName>${artifactId}</repositoryName>      <!-- github repo name -->
+					<repositoryName>issue-analysis</repositoryName>      <!-- github repo name -->
 					<repositoryOwner>curtys</repositoryOwner>    <!-- github username  -->
 				</configuration>
 				<executions>
