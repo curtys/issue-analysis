@@ -11,6 +11,14 @@ This project can be added as Maven dependency. A snapshot repository is provided
          </snapshots>
      </repository>
  </repositories>
+ 
+<dependencies>
+    <dependency>
+        <groupId>ch.unibe.scg.curtys</groupId>
+        <artifactId>issue-analysis</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </dependency>
+</dependencies>
  ```
  Source and Javadocs can also be downloaded from the Maven repsitory.
  
