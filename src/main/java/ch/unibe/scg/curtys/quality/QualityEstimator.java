@@ -28,7 +28,7 @@ public class QualityEstimator implements ScoreEstimator {
 		Configuration config = null;
 
 		try {
-			config = ConfigurationLoader.load("bayesiannetwork/config.yaml");
+			config = ConfigurationLoader.load("/bayesiannetwork/config.yaml");
 			network = BayesianNetwork.create(config);
 			mapper = ScoreMapping.create(config);
 		} catch (IOException | ConfigurationException e) {
