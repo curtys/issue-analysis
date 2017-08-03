@@ -8,8 +8,7 @@ import org.deeplearning4j.nn.multilayer.MultiLayerNetwork;
 import org.deeplearning4j.util.ModelSerializer;
 import org.nd4j.linalg.api.ndarray.INDArray;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Paths;
 
 import static ch.unibe.scg.curtys.classifier.INDUtility.createVector;
@@ -44,21 +43,20 @@ public abstract class AbstractClassifier implements Classifier {
 
 
 	private MultiLayerNetwork loadModel() {
-		File modelFile;
+		InputStream modelStream;
 		MultiLayerNetwork model = null;
 		try {
-			modelFile = getModelFile();
-			model = ModelSerializer.restoreMultiLayerNetwork(modelFile);
-		} catch (ClassifierException | IOException e) {
+			modelStream = getModelAsStream();
+			model = ModelSerializer.restoreMultiLayerNetwork(modelStream);
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		return model;
 	}
 
-	protected File getModelFile() throws ClassifierException {
-		File f = Paths.get(this.getClass().getResource(getModelFilePath()).getPath()).toFile();
-		if (!f.exists() && f.canRead()) throw new ClassifierException("Could not load model.");
-		return f;
+	protected InputStream getModelAsStream() {
+		InputStream in = getClass().getResourceAsStream(getModelFilePath());
+		return in;
 	}
 
 	protected abstract LabelMapper labelSource();
