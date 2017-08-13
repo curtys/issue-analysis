@@ -4,12 +4,16 @@ import ch.unibe.scg.curtys.bugreportquality.configuration.Configuration;
 import ch.unibe.scg.curtys.bugreportquality.configuration.ConfigurationException;
 import ch.unibe.scg.curtys.bugreportquality.configuration.ConfigurationLoader;
 import ch.unibe.scg.curtys.bugreportquality.network.BayesianNetwork;
+import ch.unibe.scg.curtys.bugreportquality.network.Node;
 import ch.unibe.scg.curtys.bugreportquality.score.ScoreMapping;
 import ch.unibe.scg.curtys.vectorization.Vector;
 import ch.unibe.scg.curtys.vectorization.VectorizationEngine;
 import ch.unibe.scg.curtys.vectorization.issue.Issue;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * An estimator for the quality of issues. The Quality scores reach from 1-5,
@@ -62,10 +66,23 @@ public class QualityEstimator implements ScoreEstimator {
 	@Override
 	public double usefulness(Issue issue) {
 		int[] vec = createVector(issue);
+		return usefulness(issue, vec);
+	}
+
+	public double usefulness(Issue issue, int[] vec) {
 		return network.query(vec, "quality");
 	}
 
-	private int[] createVector(Issue issue) {
+	public Map<String, Integer> activationFeatures(int[] vector) {
+		Map<Integer, Set<Node>> networkVectorMapping = network.getVectorMapping();
+		Map<String, Integer> activations = new HashMap<>();
+		networkVectorMapping.forEach((i, sn) -> {
+			sn.forEach(node -> activations.put(node.getName(), vector[i]));
+		});
+		return activations;
+	}
+
+	public int[] createVector(Issue issue) {
 		VectorizationEngine engine = VectorizationEngine.builder()
 				.verbose(false).integrateLabels(false).useDefaults()
 				.build();
