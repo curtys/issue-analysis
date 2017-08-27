@@ -108,7 +108,7 @@
 					<outputDirectory>${project.build.directory}/mvn-repo</outputDirectory> <!-- matches distribution management repository url above -->
 					<branch>refs/heads/mvn-repo</branch>                       <!-- remote branch name -->
 					<includes><include>**/*</include></includes>
-					<repositoryName>issue-analysis</repositoryName>      <!-- github repo name -->
+					<repositoryName>${artifactId}</repositoryName>      <!-- github repo name -->
 					<repositoryOwner>curtys</repositoryOwner>    <!-- github username  -->
 				</configuration>
 				<executions>
