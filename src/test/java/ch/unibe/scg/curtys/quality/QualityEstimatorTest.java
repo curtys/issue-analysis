@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -39,6 +41,13 @@ class QualityEstimatorTest {
 	@Test
 	void usefulness() {
 		assertNotNull(estimator.usefulness(issue));
+	}
+
+	@Test
+	void activations() {
+		int[] vec = estimator.createVector(issue);
+		Map<String, Integer> activations = estimator.activationFeatures(vec);
+		assertEquals(1, activations.get("priority").intValue());
 	}
 
 }

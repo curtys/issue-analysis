@@ -11,9 +11,7 @@ import ch.unibe.scg.curtys.vectorization.VectorizationEngine;
 import ch.unibe.scg.curtys.vectorization.issue.Issue;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * An estimator for the quality of issues. The Quality scores reach from 1-5,
@@ -73,11 +71,25 @@ public class QualityEstimator implements ScoreEstimator {
 		return network.query(vec, "quality");
 	}
 
+	/**
+	 * Constructs a map with the node IDs as keys and a binary number,
+	 * where 1 depicts an activation of the node and 0 no activation.
+	 * @param vector the vector with the activations.
+	 * @return a map
+	 */
 	public Map<String, Integer> activationFeatures(int[] vector) {
 		Map<Integer, Set<Node>> networkVectorMapping = network.getVectorMapping();
 		Map<String, Integer> activations = new HashMap<>();
 		networkVectorMapping.forEach((i, sn) -> {
-			sn.forEach(node -> activations.put(node.getName(), vector[i]));
+			sn.forEach(node -> {
+				String nodeName = node.getName();
+				if (activations.containsKey(nodeName)) {
+					Integer v = activations.get(nodeName);
+					activations.put(nodeName, v+vector[i]);
+				} else {
+					activations.put(nodeName, vector[i]);
+				}
+			});
 		});
 		return activations;
 	}
