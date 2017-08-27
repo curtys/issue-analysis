@@ -7,7 +7,7 @@ vectorMapping:
   12: # system specifications
     - node-10
     - node-12
-  13: # priority
+  13: # high priority
     - node-9
   14: # reproduction
     - node-1
@@ -25,10 +25,12 @@ vectorMapping:
     - node-11
   21: # product
     - node-13
+  22: # low priority
+    - node-9
 
 nodes:
   - id: node-1
-    name: Steps to reproduce
+    name: steps to reproduce
     nodeClass: ch.unibe.scg.curtys.bugreportquality.network.BinaryNode
     probabilities:
      - 0.83
@@ -92,7 +94,7 @@ nodes:
      - quality
 
   - id: node-9
-    name: severity
+    name: priority
     nodeClass: ch.unibe.scg.curtys.bugreportquality.network.BinaryNode
     probabilities:
      - 0.51
