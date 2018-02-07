@@ -1,5 +1,9 @@
 # Issue Analysis
 
+The Issue Analysis module provides two main functionalities: 
+* **Issue report classification:** A binary and a multiclass classifier are integrated. The binary classifier can distinguish bugs and non-bugs. The multiclass classifier supports the types *bug*, *improvement* and *feature request*.
+* **Bug report quality estimation:** For a given bug report, a score can be calculated based on its content.
+
 ## Integration
 This project can be added as Maven dependency. A snapshot repository is provided. In your project's pom add:
  ```xml
