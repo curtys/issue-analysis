@@ -1,6 +1,8 @@
-# Integration
+# Issue Analysis
+
+## Integration
 This project can be added as Maven dependency. A snapshot repository is provided. In your project's pom add:
- ```
+ ```xml
  <repositories>
      <repository>
          <id>issue-analysis-mvn-repo</id>
@@ -22,26 +24,52 @@ This project can be added as Maven dependency. A snapshot repository is provided
  ```
  Source and Javadocs can also be downloaded from the Maven repsitory.
  
- # Usage
+ ## Usage
  
  Two tools are provided to analyse issues:
  * Issue type classifier
  * Quality estimator
  
- ## Classifier
+ ### Classifier
  There are two issue classifiers: A binary classifier, which predicts if the 
  issue in question is a bug or not, and a multi-class classifier with finer 
  type distinction. Use the binary classifier if you just want to know whether 
  or not the issue in question represents a bug.
- ```
- Classifier classifier = new BinaryClassifier();
- Prediction prediction = classifier.query(issue);
- /* get the label with the highest probability */
- String type = prediction.getBestClassLabel();
+ ```java
+// instantiate a binary classifier
+Classifier binaryClassifier = new BinaryClassifier();
+
+// or a multiclass classifier
+Classifier multiclassClassifier = new MulticlassClassifier();
+
+Prediction prediction = binaryClassifier.query(issue);
+
+// get the label with the highest probability
+String type = prediction.getBestClassLabel();
+
+// get the probability of a given label
+float probability = prediction.probabilityOf(label);
+
+// get all class labels
+Set<String> labelSet = prediction.labels();
+
+// get a map with all labels and their probabilities
+Map<String, Float> propabilitiesMap = prediction.getProbabilities();
  ```
  
- ## Quality Estimator
+ ### Quality Estimator
+ Use the quality estimation to calculate a score for a bug report:
+ ```java
+QualityEstimator estimator = new QualityEstimator();
+
+// calculate the score
+int score = estimator.score(issue);
+
+// get a map with the features as keys and a value 
+// of either 1 (if feature is present) or 0 (otherwise)
+Map<String, Integer> featureMap = 
+		estimator.activationFeatures(vector);
  ```
- ScoreEstimator estimator = new QualityEstimator();
- int score = estimator.score(issue);
- ```
+
+## License
+MIT
